@@ -19,7 +19,7 @@
 
 ## Supported Architectures
 
-Pulling `ghcr.io/muchobien/pocketbase:latest` will automatically retrieve the appropriate image for your system architecture.
+Pulling `ghcr.io/keksiqc/pocketbase:latest` will automatically retrieve the appropriate image for your system architecture.
 
 | Architecture | Supported |
 |--------------|-----------|
@@ -52,7 +52,7 @@ Below are example configurations to get started with a PocketBase container.
 version: "3.7"
 services:
   pocketbase:
-    image: ghcr.io/muchobien/pocketbase:latest
+    image: ghcr.io/keksiqc/pocketbase:latest
     container_name: pocketbase
     restart: unless-stopped
     command:
@@ -84,7 +84,7 @@ docker run -d \
   -v /path/to/public:/pb_public `# optional` \
   -v /path/to/hooks:/pb_hooks `# optional` \
   --restart unless-stopped \
-  ghcr.io/muchobien/pocketbase:latest \
+  ghcr.io/keksiqc/pocketbase:latest \
   --encryptionEnv ENCRYPTION `# optional`
 ```
 
