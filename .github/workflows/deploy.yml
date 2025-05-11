@@ -45,18 +45,18 @@ jobs:
         with:
           result-encoding: string
           script: |
-            const {PACKAGE_NAME,PACKAGE_TYPE} = process.env;
-            const {data: packages} = await github.rest.packages.getAllPackageVersionsForPackageOwnedByOrg({
-              org: context.repo.owner,
+            const { PACKAGE_NAME, PACKAGE_TYPE } = process.env;
+            const { data: packages } = await github.rest.packages.getAllPackageVersionsForPackageOwnedByUser({
+              username: context.repo.owner,
               package_type: PACKAGE_TYPE,
               package_name: PACKAGE_NAME,
-            })
+            });
 
             const latest = packages.filter((p) =>
               p.metadata.container.tags.includes("latest")
             )[0];
 
-            return latest.metadata.container.tags.find((v) => /^v?\d+\.\d+\.\d+$/.test(v)) || '0.0.0'
+            return latest && latest.metadata.container.tags.find((v) => /^v?\d+\.\d+\.\d+$/.test(v)) || '0.0.0'
 
   release:
     runs-on: ubuntu-latest
@@ -88,7 +88,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            ghcr.io/muchobien/pocketbase
+            ghcr.io/${{ github.repository_owner }}/pocketbase
           tags: |
             type=semver,pattern={{version}},value=${{ steps.version.outputs.value }}
             type=semver,pattern={{major}}.{{minor}},value=${{ steps.version.outputs.value }}
