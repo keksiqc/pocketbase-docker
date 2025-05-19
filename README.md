@@ -17,6 +17,9 @@
 
 ---
 
+> [!NOTE]
+> This project is based on the work found in [muchobien/pocketbase-docker](https://github.com/muchobien/pocketbase-docker).
+
 ## Supported Architectures
 
 Pulling `ghcr.io/keksiqc/pocketbase:latest` will automatically retrieve the appropriate image for your system architecture.
