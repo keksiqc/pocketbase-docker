@@ -26,17 +26,17 @@ RUN apk update && apk add --no-cache ca-certificates \
 
 EXPOSE 8090
 
-ENV PB_DATA_DIR="/pb_data"
-ENV PB_PUBLIC_DIR="/pb_public"
-ENV PB_HOOKS_DIR="/pb_hooks"
+ENV PB_DATA_DIR="/pb/pb_data"
+ENV PB_PUBLIC_DIR="/pb/pb_public"
+ENV PB_HOOKS_DIR="/pb/pb_hooks"
 
-WORKDIR ${PB_DATA_DIR}
+WORKDIR /pb
 
 RUN mkdir -p ${PB_DATA_DIR} ${PB_PUBLIC_DIR} ${PB_HOOKS_DIR} \
     && chown -R pocketbase:pocketbase ${PB_DATA_DIR} ${PB_PUBLIC_DIR} ${PB_HOOKS_DIR}
 
-COPY --from=downloader /tmp/pocketbase/pocketbase /usr/local/bin/pocketbase
+COPY --from=downloader /tmp/pocketbase/pocketbase /pb/pocketbase
 
 USER pocketbase
 
-ENTRYPOINT ["/usr/local/bin/pocketbase", "serve", "--http=0.0.0.0:8090", "--dir", "${PB_DATA_DIR}", "--publicDir", "${PB_PUBLIC_DIR}", "--hooksDir", "${PB_HOOKS_DIR}"]
+ENTRYPOINT ["/pb/pocketbase", "serve", "--http=0.0.0.0:8090", "--dir", "${PB_DATA_DIR}", "--publicDir", "${PB_PUBLIC_DIR}", "--hooksDir", "${PB_HOOKS_DIR}"]
