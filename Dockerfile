@@ -1,4 +1,4 @@
-FROM alpine:3 as downloader
+FROM alpine:3.21.3 as downloader
 
 ARG TARGETOS
 ARG TARGETARCH
@@ -11,7 +11,7 @@ RUN wget https://github.com/pocketbase/pocketbase/releases/download/v${VERSION}/
     && unzip pocketbase_${VERSION}_${BUILDX_ARCH}.zip \
     && chmod +x /pocketbase
 
-FROM alpine:3
+FROM alpine:3.21.3
 RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
 
 EXPOSE 8090
