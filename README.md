@@ -98,7 +98,7 @@ docker run -d \
 To build the image yourself, copy the `Dockerfile` and `docker-compose.yml` to your project directory. Update `docker-compose.yml` to build the image instead of pulling it:
 
 ```yaml
-version: "3.7"
+version: "3.8"
 services:
   pocketbase:
     build:
@@ -118,6 +118,7 @@ services:
       - /path/to/data:/pb_data
       - /path/to/public:/pb_public # optional
       - /path/to/hooks:/pb_hooks # optional
+      - /path/to/migrations:/pb_migrations # optional
     healthcheck: # optional, recommended since v0.10.0
       test: wget --no-verbose --tries=1 --spider http://localhost:8090/api/health || exit 1
       interval: 5s
