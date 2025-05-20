@@ -31,8 +31,7 @@ ENV PB_MIGRATIONS_DIR="/pb/pb_migrations"
 
 WORKDIR /pb
 
-RUN mkdir -p ${PB_DATA_DIR} ${PB_PUBLIC_DIR} ${PB_HOOKS_DIR} ${PB_MIGRATIONS_DIR} \
-    && chown -R pocketbase:pocketbase ${PB_DATA_DIR} ${PB_PUBLIC_DIR} ${PB_HOOKS_DIR} ${PB_MIGRATIONS_DIR}
+RUN mkdir -p ${PB_DATA_DIR} ${PB_PUBLIC_DIR} ${PB_HOOKS_DIR} ${PB_MIGRATIONS_DIR}
 
 COPY --from=downloader /tmp/pocketbase/pocketbase /pb/pocketbase
 
