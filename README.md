@@ -87,6 +87,7 @@ docker run -d \
   -v /path/to/data:/pb/pb_data \
   -v /path/to/public:/pb/pb_public `# optional` \
   -v /path/to/hooks:/pb/pb_hooks `# optional` \
+  -v /path/to/migrations:/pb/pb_migrations `# optional` \
   --restart unless-stopped \
   ghcr.io/keksiqc/pocketbase:latest \
   --encryptionEnv ENCRYPTION `# optional`
