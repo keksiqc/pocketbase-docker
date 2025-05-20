@@ -24,15 +24,8 @@ RUN apk update && apk add --no-cache ca-certificates \
 
 EXPOSE 8090
 
-ENV PB_DATA_DIR="/pb/pb_data"
-ENV PB_PUBLIC_DIR="/pb/pb_public"
-ENV PB_HOOKS_DIR="/pb/pb_hooks"
-ENV PB_MIGRATIONS_DIR="/pb/pb_migrations"
-
 WORKDIR /pb
-
-RUN mkdir -p ${PB_DATA_DIR} ${PB_PUBLIC_DIR} ${PB_HOOKS_DIR} ${PB_MIGRATIONS_DIR}
 
 COPY --from=downloader /tmp/pocketbase/pocketbase /pb/pocketbase
 
-ENTRYPOINT ["/pb/pocketbase", "serve", "--http=0.0.0.0:8090", "--dir", "${PB_DATA_DIR}", "--publicDir", "${PB_PUBLIC_DIR}", "--hooksDir", "${PB_HOOKS_DIR}", "--migrationsDir", "${PB_MIGRATIONS_DIR}"]
+ENTRYPOINT ["/pb/pocketbase", "serve", "--http=0.0.0.0:8090", "--dir", "/pb/pb_data", "--publicDir", "/pb/pb_public", "--hooksDir", "/pb/pb_hooks", "--migrationsDir", "/pb/pb_migrations"]
