@@ -52,7 +52,7 @@ Below are example configurations to get started with a PocketBase container.
 ### Using Docker Compose (Recommended)
 
 ```yaml
-version: "3.7"
+version: "3.8"
 services:
   pocketbase:
     image: ghcr.io/keksiqc/pocketbase:latest
@@ -69,6 +69,7 @@ services:
       - /path/to/data:/pb/pb_data
       - /path/to/public:/pb/pb_public # optional
       - /path/to/hooks:/pb/pb_hooks # optional
+      - /path/to/migrations:/pb/pb_migrations # optional
     healthcheck: # optional, recommended since v0.10.0
       test: wget --no-verbose --tries=1 --spider http://localhost:8090/api/health || exit 1
       interval: 5s
