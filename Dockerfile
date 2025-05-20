@@ -1,5 +1,5 @@
 # --- Builder Stage ---
-FROM alpine:3.21.3 as downloader
+FROM alpine:3.21.3 AS downloader
 
 ARG TARGETOS=linux
 ARG TARGETARCH=amd64
